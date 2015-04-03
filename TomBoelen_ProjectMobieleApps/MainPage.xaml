@@ -8,6 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:maps="clr-namespace:Microsoft.Phone.Maps.Controls;assembly=Microsoft.Phone.Maps"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Maps.Toolkit;assembly=Microsoft.Phone.Controls.Toolkit"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -88,9 +89,24 @@
                 </phone:PivotItem>
 
                 <phone:PivotItem Header="MAP">
-                    <Grid>
-                        <maps:Map />
-                    </Grid>
+                    <StackPanel>
+                        <Button>Bepaal mijn locatie</Button>
+                        <Button>Hulp</Button>
+                        <maps:Map x:Name="maps" Grid.Row="1">
+                            <toolkit:MapExtensions.Children>
+                                <toolkit:MapItemsControl Name="mapItems">
+                                    <toolkit:MapItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <toolkit:Pushpin GeoCoordinate="{Binding GeoCoordinate}" 
+Content="{Binding Name}" />
+                                        </DataTemplate>
+                                    </toolkit:MapItemsControl.ItemTemplate>
+                                </toolkit:MapItemsControl>
+                            </toolkit:MapExtensions.Children>
+                        </maps:Map>
+                    </StackPanel>
+                    
+                    
                 </phone:PivotItem>
 
             </phone:Pivot>

@@ -10,11 +10,14 @@ using Microsoft.Phone.Shell;
 using TomBoelen_ProjectMobieleApps.Resources;
 using Windows.Devices.Geolocation;
 using System.Device.Location;
+using Microsoft.Phone.Maps.Toolkit;
+using TomBoelen_ProjectMobieleApps.ViewModels;
 
 namespace TomBoelen_ProjectMobieleApps
 {
     public partial class MainPage : PhoneApplicationPage
     {
+        private readonly PlaceMarkViewModel _ViewModel = new PlaceMarkViewModel();
         // Constructor
        
         // Constructor
@@ -22,12 +25,21 @@ namespace TomBoelen_ProjectMobieleApps
         {
 
             InitializeComponent();
+            this.DataContext = this._ViewModel;
 
            
 
 
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
+        }
+
+        private void PhoneApplicationPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            maps.SetView(new GeoCoordinate(47.6045697927475, -122.329885661602), 16);
+            MapExtensions.GetChildren(maps)
+            .OfType<MapItemsControl>().First()
+            .ItemsSource = this._ViewModel.Placemark;
         }
 
         
