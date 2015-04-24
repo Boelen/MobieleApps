@@ -9,7 +9,8 @@ using System.Collections.ObjectModel;
 using System.Net;
 using System.Xml.Linq;
 using Microsoft.Phone.Net.NetworkInformation;
-using Microsoft.Phone.Shell;
+using Microsoft.Phone.Shell
+;
 using Windows.Devices.Geolocation;
 using System.Device.Location;
 using System.Runtime.CompilerServices;
@@ -19,7 +20,7 @@ using Microsoft.Phone.Maps.Controls;
 
 namespace TomBoelen_ProjectMobieleApps
 {
-    internal class Placemark : INotifyPropertyChanged
+    public class Placemark : INotifyPropertyChanged
     {
         private string _Name;
         private string _Description;

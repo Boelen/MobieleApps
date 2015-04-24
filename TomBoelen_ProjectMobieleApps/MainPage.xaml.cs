@@ -36,10 +36,13 @@ namespace TomBoelen_ProjectMobieleApps
 
         private void PhoneApplicationPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
+            this._ViewModel.LoadData();
             maps.SetView(new GeoCoordinate(47.6045697927475, -122.329885661602), 16);
             MapExtensions.GetChildren(maps)
             .OfType<MapItemsControl>().First()
-            .ItemsSource = this._ViewModel.Placemark;
+            .ItemsSource = this._ViewModel.Items;
+           
+
         }
 
         
@@ -59,6 +62,11 @@ namespace TomBoelen_ProjectMobieleApps
             // Create a new menu item with the localized string from AppResources.
             //ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
             //ApplicationBar.MenuItems.Add(appBarMenuItem);
+        }
+
+        private void PhoneApplicationPage_Loaded_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
