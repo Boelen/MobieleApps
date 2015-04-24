@@ -84,8 +84,10 @@
 
                 </phone:PivotItem>
 
-                <phone:PivotItem Header="work">
-                   
+                <phone:PivotItem Header="Compass">
+
+               
+
                 </phone:PivotItem>
 
                 <phone:PivotItem Header="MAP">
