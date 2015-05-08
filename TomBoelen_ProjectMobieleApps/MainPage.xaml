@@ -106,6 +106,30 @@
                                 </toolkit:MapItemsControl>
                             </toolkit:MapExtensions.Children>
                         </maps:Map>
+                        
+                        <Grid>
+                            <TextBlock Text="Distance:" />
+                            <TextBlock Text="0 km" x:Name="distanceLabel"
+                                       HorizontalAlignment="Center"/>
+                            
+                            <TextBlock Text="Time" />
+                          
+                            
+                            <TextBlock Text="Time:" />
+                            <TextBlock Text="00:00:00" x:Name="timeLabel" HorizontalAlignment="Center"/>
+                            
+                            <TextBlock Text="Calories" />
+                            <TextBlock Text="0" x:Name="caloriesLabel" HorizontalAlignment="Center"/>
+                            
+                            <TextBlock Text="Pace"/>
+                            <TextBlock Text="00:00" x:Name="paceLabel" HorizontalAlignment="Center"/>
+                            
+                            <Button Content="start"
+                                    Grid.Row="2" Grid.ColumnSpan="4" Click="StartButton_Click" x:Name="StartButton" />
+                            
+                        </Grid>
+                        
+                        
                     </StackPanel>
                     
                     

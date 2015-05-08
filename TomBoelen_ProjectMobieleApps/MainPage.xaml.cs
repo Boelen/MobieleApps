@@ -68,5 +68,10 @@ namespace TomBoelen_ProjectMobieleApps
         {
 
         }
+
+        private void StartButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
