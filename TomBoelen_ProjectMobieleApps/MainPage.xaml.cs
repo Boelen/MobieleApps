@@ -12,12 +12,20 @@ using Windows.Devices.Geolocation;
 using System.Device.Location;
 using Microsoft.Phone.Maps.Toolkit;
 using TomBoelen_ProjectMobieleApps.ViewModels;
+using System.Windows.Threading;
+using Microsoft.Phone.Maps.Controls;
+using Microsoft.Phone.Logging;
 
 namespace TomBoelen_ProjectMobieleApps
 {
     public partial class MainPage : PhoneApplicationPage
     {
         private readonly PlaceMarkViewModel _ViewModel = new PlaceMarkViewModel();
+        //private GeoCoordinateWatcher _watcher = new GeoCoordinateWatcher(GeoPositionAccuracy.High);
+        //private MapPolyLine _line;
+        private DispatcherTimer _Timer = new DispatcherTimer();
+        private long _startTime;
+
         // Constructor
        
         // Constructor
@@ -26,9 +34,15 @@ namespace TomBoelen_ProjectMobieleApps
 
             InitializeComponent();
             this.DataContext = this._ViewModel;
+            _Timer.Interval = TimeSpan.FromSeconds(1);
+            _Timer.Tick += _Timer_Tick;
 
-           
 
+            //_line = new MapPolyLine();
+            //_line.StrokeColor = Colors.Red;
+            //_line.StrokeThickness = 5;
+            //maps.MapElements.Add(_line);
+            //_watcher.PositionChanged += _watcher_PositionChanged;
 
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
@@ -67,6 +81,34 @@ namespace TomBoelen_ProjectMobieleApps
         private void PhoneApplicationPage_Loaded_1(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void StartButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (_Timer.IsEnabled)
+            {
+                _Timer.Stop();
+                StartButton.Content = "start";
+            }
+            else
+            {
+                _Timer.Start();
+                _startTime = System.Environment.TickCount;
+                StartButton.Content = "Stop";
+            }
+        }
+
+        void _Timer_Tick(object sender, EventArgs e)
+        {
+            TimeSpan runTime = TimeSpan.FromMilliseconds(System.Environment.TickCount - _startTime);
+            timeLabel.Text = runTime.ToString(@"hh\:mm\:ss");
+        }
+
+        void _watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
+        {
+            var coord = new GeoCoordinate(e.Position.Location.Latitude, e.Position.Location.Longitude);
+
+            //_line.Path.Add(coord);
         }
     }
 }
