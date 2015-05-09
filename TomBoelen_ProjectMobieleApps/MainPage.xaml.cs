@@ -46,14 +46,15 @@ namespace TomBoelen_ProjectMobieleApps
             maps.MapElements.Add(_line);
             _watcher.PositionChanged += _watcher_PositionChanged;
 
-            // Sample code to localize the ApplicationBar
-            //BuildLocalizedApplicationBar();
+            //Sample code to localize the ApplicationBar
+            BuildLocalizedApplicationBar();
         }
 
         private void PhoneApplicationPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             this._ViewModel.LoadData();
             maps.SetView(new GeoCoordinate(47.6045697927475, -122.329885661602), 16);
+            maps.Pitch = 55;
             MapExtensions.GetChildren(maps)
             .OfType<MapItemsControl>().First()
             .ItemsSource = this._ViewModel.Items;
@@ -71,7 +72,7 @@ namespace TomBoelen_ProjectMobieleApps
             ApplicationBar = new ApplicationBar();
 
             // Create a new button and set the text value to the localized string from AppResources.
-            ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/new.png", UriKind.Relative));
+            ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/add.png", UriKind.Relative));
             appBarButton.Text = AppResources.AppBarButtonText;
             ApplicationBar.Buttons.Add(appBarButton);
 
@@ -129,6 +130,17 @@ namespace TomBoelen_ProjectMobieleApps
             maps.Center = coord;
 
             _line.Path.Add(coord);
+
+
+            ShellTile.ActiveTiles.First().Update(new IconicTileData()
+            {
+                Title = "WP8Runner",
+                WideContent1 = string.Format("{0:f2} km", _kilometers),
+                WideContent2 = string.Format("{0:f0} calories", _kilometers * 65),
+            });
+
         }
+
+
     }
 }
