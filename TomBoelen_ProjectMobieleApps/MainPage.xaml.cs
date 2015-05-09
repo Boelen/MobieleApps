@@ -15,16 +15,19 @@ using TomBoelen_ProjectMobieleApps.ViewModels;
 using System.Windows.Threading;
 using Microsoft.Phone.Maps.Controls;
 using Microsoft.Phone.Logging;
+using System.Windows.Media;
 
 namespace TomBoelen_ProjectMobieleApps
 {
     public partial class MainPage : PhoneApplicationPage
     {
         private readonly PlaceMarkViewModel _ViewModel = new PlaceMarkViewModel();
-        //private GeoCoordinateWatcher _watcher = new GeoCoordinateWatcher(GeoPositionAccuracy.High);
-        //private MapPolyLine _line;
+        private GeoCoordinateWatcher _watcher = new GeoCoordinateWatcher(GeoPositionAccuracy.High);
+        private MapPolyline _line;
         private DispatcherTimer _Timer = new DispatcherTimer();
         private long _startTime;
+        private double _kilometers;
+        private long _previousPositionChangeTick;
 
         // Constructor
        
@@ -37,12 +40,11 @@ namespace TomBoelen_ProjectMobieleApps
             _Timer.Interval = TimeSpan.FromSeconds(1);
             _Timer.Tick += _Timer_Tick;
 
-
-            //_line = new MapPolyLine();
-            //_line.StrokeColor = Colors.Red;
-            //_line.StrokeThickness = 5;
-            //maps.MapElements.Add(_line);
-            //_watcher.PositionChanged += _watcher_PositionChanged;
+            _line = new MapPolyline();
+            _line.StrokeColor = Colors.Red;
+            _line.StrokeThickness = 5;
+            maps.MapElements.Add(_line);
+            _watcher.PositionChanged += _watcher_PositionChanged;
 
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
@@ -87,11 +89,13 @@ namespace TomBoelen_ProjectMobieleApps
         {
             if (_Timer.IsEnabled)
             {
+                _watcher.Stop();
                 _Timer.Stop();
                 StartButton.Content = "start";
             }
             else
             {
+                _watcher.Start();
                 _Timer.Start();
                 _startTime = System.Environment.TickCount;
                 StartButton.Content = "Stop";
@@ -108,7 +112,23 @@ namespace TomBoelen_ProjectMobieleApps
         {
             var coord = new GeoCoordinate(e.Position.Location.Latitude, e.Position.Location.Longitude);
 
-            //_line.Path.Add(coord);
+            if(_line.Path.Count > 0)
+            {
+                var previousPoint = _line.Path.Last();
+                var distance = coord.GetDistanceTo(previousPoint);
+
+                //var MiliPerKilometer = (1000.0 / distance) * (System.Environment.TickCount - _previousPositionChangeTick);
+
+                _kilometers += distance / 1000.0;
+
+                //paceLabel.Text = TimeSpan.FromMilliseconds(MiliPerKilometer).ToString(@"mm\:ss");
+                distanceLabel.Text = string.Format("{0:f2} km", _kilometers);
+                caloriesLabel.Text = String.Format("{0:f0}", _kilometers * 65);
+            }
+
+            maps.Center = coord;
+
+            _line.Path.Add(coord);
         }
     }
 }
