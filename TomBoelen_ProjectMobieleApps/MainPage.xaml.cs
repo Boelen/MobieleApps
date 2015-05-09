@@ -123,6 +123,7 @@ namespace TomBoelen_ProjectMobieleApps
                 _kilometers += distance / 1000.0;
 
                 //paceLabel.Text = TimeSpan.FromMilliseconds(MiliPerKilometer).ToString(@"mm\:ss");
+
                 distanceLabel.Text = string.Format("{0:f2} km", _kilometers);
                 caloriesLabel.Text = String.Format("{0:f0}", _kilometers * 65);
             }
@@ -139,6 +140,11 @@ namespace TomBoelen_ProjectMobieleApps
                 WideContent2 = string.Format("{0:f0} calories", _kilometers * 65),
             });
 
+        }
+
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/AddPushpin.xaml", UriKind.Relative));
         }
 
 
