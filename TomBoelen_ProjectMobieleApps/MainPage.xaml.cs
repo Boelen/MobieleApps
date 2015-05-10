@@ -75,10 +75,16 @@ namespace TomBoelen_ProjectMobieleApps
             ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/add.png", UriKind.Relative));
             appBarButton.Text = AppResources.AppBarButtonText;
             ApplicationBar.Buttons.Add(appBarButton);
+            appBarButton.Click += appBarButton_Click;
 
             // Create a new menu item with the localized string from AppResources.
             //ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
             //ApplicationBar.MenuItems.Add(appBarMenuItem);
+        }
+
+        void appBarButton_Click(object sender, EventArgs e)
+        {
+          NavigationService.Navigate(new Uri("/AddPushpin.xaml", UriKind.RelativeOrAbsolute));
         }
 
         private void PhoneApplicationPage_Loaded_1(object sender, RoutedEventArgs e)
@@ -140,12 +146,6 @@ namespace TomBoelen_ProjectMobieleApps
                 WideContent2 = string.Format("{0:f0} calories", _kilometers * 65),
             });
 
-        }
-
-        private void AppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-
-            NavigationService.Navigate(new Uri("/AddPushpin.xaml", UriKind.RelativeOrAbsolute));
         }
 
 
