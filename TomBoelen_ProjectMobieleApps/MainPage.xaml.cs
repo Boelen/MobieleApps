@@ -27,7 +27,6 @@ namespace TomBoelen_ProjectMobieleApps
         private DispatcherTimer _Timer = new DispatcherTimer();
         private long _startTime;
         private double _kilometers;
-        private long _previousPositionChangeTick;
 
         // Constructor
        
@@ -58,8 +57,6 @@ namespace TomBoelen_ProjectMobieleApps
             MapExtensions.GetChildren(maps)
             .OfType<MapItemsControl>().First()
             .ItemsSource = this._ViewModel.Items;
-           
-
         }
 
         

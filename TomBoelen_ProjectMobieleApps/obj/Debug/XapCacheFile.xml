@@ -1,7 +1,8 @@
-﻿<xapCache source="C:\Users\tom\Desktop\MobieleApps\TomBoelen_ProjectMobieleApps\Bin\Debug\TomBoelen_ProjectMobieleApps_Debug_AnyCPU.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="10/05/2015 14:30:56">
-  <file source="C:\Users\tom\Desktop\MobieleApps\TomBoelen_ProjectMobieleApps\obj\Debug\TomBoelen_ProjectMobieleApps.dll" archivePath="TomBoelen_ProjectMobieleApps.dll" lastWriteTime="10/05/2015 14:30:55" />
+﻿<xapCache source="C:\Users\tom\Desktop\MobieleApps\TomBoelen_ProjectMobieleApps\Bin\Debug\TomBoelen_ProjectMobieleApps_Debug_AnyCPU.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="10/05/2015 16:11:29">
+  <file source="C:\Users\tom\Desktop\MobieleApps\TomBoelen_ProjectMobieleApps\obj\Debug\TomBoelen_ProjectMobieleApps.dll" archivePath="TomBoelen_ProjectMobieleApps.dll" lastWriteTime="10/05/2015 16:11:29" />
   <file source="C:\Users\tom\Desktop\MobieleApps\TomBoelen_ProjectMobieleApps\Assets\AlignmentGrid.png" archivePath="Assets\AlignmentGrid.png" lastWriteTime="9/05/2015 15:57:02" />
   <file source="C:\Users\tom\Desktop\MobieleApps\TomBoelen_ProjectMobieleApps\Assets\Appbar\add.png" archivePath="Assets\Appbar\add.png" lastWriteTime="9/05/2015 18:45:07" />
+  <file source="C:\Users\tom\Desktop\MobieleApps\TomBoelen_ProjectMobieleApps\Assets\Appbar\back.png" archivePath="Assets\Appbar\back.png" lastWriteTime="10/05/2015 14:55:02" />
   <file source="C:\Users\tom\Desktop\MobieleApps\TomBoelen_ProjectMobieleApps\Assets\Tiles\FlipCycleTileLarge.png" archivePath="Assets\Tiles\FlipCycleTileLarge.png" lastWriteTime="9/05/2015 15:57:03" />
   <file source="C:\Users\tom\Desktop\MobieleApps\TomBoelen_ProjectMobieleApps\Assets\Tiles\FlipCycleTileMedium.png" archivePath="Assets\Tiles\FlipCycleTileMedium.png" lastWriteTime="9/05/2015 15:57:03" />
   <file source="C:\Users\tom\Desktop\MobieleApps\TomBoelen_ProjectMobieleApps\Assets\Tiles\FlipCycleTileSmall.png" archivePath="Assets\Tiles\FlipCycleTileSmall.png" lastWriteTime="9/05/2015 15:57:03" />
@@ -23,5 +24,5 @@
   <file source="C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v8.0\Libraries\Microsoft.Phone.Controls.dll" archivePath="Microsoft.Phone.Controls.dll" lastWriteTime="1/01/2013 18:57:00" />
   <file source="C:\Users\tom\Desktop\MobieleApps\packages\WPtoolkit.4.2013.08.16\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll" archivePath="Microsoft.Phone.Controls.Toolkit.dll" lastWriteTime="9/05/2015 15:57:03" />
   <file source="C:\Users\tom\Desktop\MobieleApps\TomBoelen_ProjectMobieleApps\Assets\ApplicationIcon.png" archivePath="Assets\ApplicationIcon.png" lastWriteTime="9/05/2015 15:57:03" />
-  <file source="C:\Users\tom\Desktop\MobieleApps\TomBoelen_ProjectMobieleApps\Bin\Debug\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="9/05/2015 18:32:42" />
+  <file source="C:\Users\tom\Desktop\MobieleApps\TomBoelen_ProjectMobieleApps\Bin\Debug\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="10/05/2015 15:04:49" />
 </xapCache>
