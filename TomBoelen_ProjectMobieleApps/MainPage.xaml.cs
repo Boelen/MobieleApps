@@ -144,7 +144,8 @@ namespace TomBoelen_ProjectMobieleApps
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/AddPushpin.xaml", UriKind.Relative));
+
+            NavigationService.Navigate(new Uri("/AddPushpin.xaml", UriKind.RelativeOrAbsolute));
         }
 
 
