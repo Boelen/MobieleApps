@@ -21,7 +21,6 @@ namespace TomBoelen_ProjectMobieleApps
 
         private Geolocator locator = null;
         private readonly PlaceMarkViewModel _ViewModel = new PlaceMarkViewModel();
-
         public AddPushpin()
         {
             InitializeComponent();
@@ -30,10 +29,12 @@ namespace TomBoelen_ProjectMobieleApps
 
             if (locator == null)
             {
+                
                 locator = new Geolocator();
                 locator.DesiredAccuracy = PositionAccuracy.High;
-
             }
+
+            ZoekCoord();
 
 
         }
@@ -49,7 +50,6 @@ namespace TomBoelen_ProjectMobieleApps
             ApplicationBar.Buttons.Add(appBarButton);
             appBarButton.Click += appBarButton_Click;
 
-            ZoekCoord();
 
             // Create a new menu item with the localized string from AppResources.
             //ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
@@ -81,16 +81,17 @@ namespace TomBoelen_ProjectMobieleApps
         {
             AddPushpinButton.IsEnabled = false;
 
-            try
-            {
-                Geoposition position = await locator.GetGeopositionAsync();
+            //try
+            //{
+
+            Geoposition position = await locator.GetGeopositionAsync();
                 txtLatitude.Text = position.Coordinate.Latitude.ToString();
                 txtLongitude.Text = position.Coordinate.Longitude.ToString();
-            }
-            catch
-            {
-                MessageBox.Show("Je locatie moet bepaalt worden");
-            }
+            //}
+            //catch
+            //{
+            //    MessageBox.Show("Je locatie moet bepaalt worden");
+            //}
 
             AddPushpinButton.IsEnabled = true;
 

@@ -115,6 +115,7 @@ namespace TomBoelen_ProjectMobieleApps
                 _watcher.Stop();
                 _Timer.Stop();
                 StartButton.Content = "start";
+            
             }
             else
             {
@@ -134,7 +135,6 @@ namespace TomBoelen_ProjectMobieleApps
         void _watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
             var coord = new GeoCoordinate(e.Position.Location.Latitude, e.Position.Location.Longitude);
-
             if(_line.Path.Count > 0)
             {
                 var previousPoint = _line.Path.Last();
