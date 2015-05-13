@@ -84,9 +84,11 @@
 
                 </phone:PivotItem>
 
-                <phone:PivotItem Header="Compass">
-
-               
+                <phone:PivotItem Header="Score">
+                    <StackPanel>
+                        <Button  Content="Score" HorizontalAlignment="Center" Click="ButtonAsk_Click" x:Name="ButtonAsk" Grid.Row="3" Width="300" Height="75" />
+                        <TextBlock TextWrapping="Wrap" Text="TextBlock" Name="BlockScore"/>
+                    </StackPanel>
 
                 </phone:PivotItem>
 

@@ -12,6 +12,7 @@ using System.Globalization;
 using System.Device.Location;
 using System.Threading.Tasks;
 using Windows.Devices.Geolocation;
+using TomBoelen_ProjectMobieleApps.ViewModels;
 
 namespace TomBoelen_ProjectMobieleApps
 {
@@ -19,11 +20,13 @@ namespace TomBoelen_ProjectMobieleApps
     {
 
         private Geolocator locator = null;
+        private readonly PlaceMarkViewModel _ViewModel = new PlaceMarkViewModel();
 
         public AddPushpin()
         {
             InitializeComponent();
             BuildLocalizedApplicationBar();
+            
 
             if (locator == null)
             {
@@ -65,18 +68,33 @@ namespace TomBoelen_ProjectMobieleApps
 
          private void AddPushpin_Click(object sender, RoutedEventArgs e)
        {
-          
+           _ViewModel.Items.Add(new Placemark()
+                {
+                    Name = txtPushpin.Text,
+                    Description = txtLatitude.Text,
+                    GeoCoordinate = new GeoCoordinate(Convert.ToDouble(txtLatitude.Text), Convert.ToDouble(txtLongitude.Text))
+                   
+                });
        }
 
         async private void ZoekCoord()
         {
             AddPushpinButton.IsEnabled = false;
 
-            Geoposition position = await locator.GetGeopositionAsync();
-            txtLatitude.Text = position.Coordinate.Latitude.ToString();
-            txtLongitude.Text = position.Coordinate.Longitude.ToString();
+            try
+            {
+                Geoposition position = await locator.GetGeopositionAsync();
+                txtLatitude.Text = position.Coordinate.Latitude.ToString();
+                txtLongitude.Text = position.Coordinate.Longitude.ToString();
+            }
+            catch
+            {
+                MessageBox.Show("Je locatie moet bepaalt worden");
+            }
 
             AddPushpinButton.IsEnabled = true;
+
+          
         }
     }
 }

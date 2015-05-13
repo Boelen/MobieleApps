@@ -133,7 +133,6 @@ C:\Users\tom\Desktop\MobieleApps\TomBoelen_ProjectMobieleApps\Bin\Debug\uz-Latn-
 C:\Users\tom\Desktop\MobieleApps\TomBoelen_ProjectMobieleApps\Bin\Debug\vi-VN\Microsoft.Phone.Controls.Toolkit.resources.dll
 C:\Users\tom\Desktop\MobieleApps\TomBoelen_ProjectMobieleApps\Bin\Debug\zh-CN\Microsoft.Phone.Controls.Toolkit.resources.dll
 C:\Users\tom\Desktop\MobieleApps\TomBoelen_ProjectMobieleApps\Bin\Debug\zh-TW\Microsoft.Phone.Controls.Toolkit.resources.dll
-C:\Users\tom\Desktop\MobieleApps\TomBoelen_ProjectMobieleApps\obj\Debug\TomBoelen_ProjectMobieleApps.csprojResolveAssemblyReference.cache
 C:\Users\tom\Desktop\MobieleApps\TomBoelen_ProjectMobieleApps\obj\Debug\App.g.cs
 C:\Users\tom\Desktop\MobieleApps\TomBoelen_ProjectMobieleApps\obj\Debug\MainPage.g.cs
 C:\Users\tom\Desktop\MobieleApps\TomBoelen_ProjectMobieleApps\obj\Debug\TomBoelen_ProjectMobieleApps.g.resources
@@ -143,3 +142,4 @@ C:\Users\tom\Desktop\MobieleApps\TomBoelen_ProjectMobieleApps\obj\Debug\TomBoele
 C:\Users\tom\Desktop\MobieleApps\TomBoelen_ProjectMobieleApps\obj\Debug\TomBoelen_ProjectMobieleApps.pdb
 C:\Users\tom\Desktop\MobieleApps\TomBoelen_ProjectMobieleApps\obj\Debug\XapCacheFile.xml
 C:\Users\tom\Desktop\MobieleApps\TomBoelen_ProjectMobieleApps\obj\Debug\AddPushpin.g.cs
+C:\Users\tom\Desktop\MobieleApps\TomBoelen_ProjectMobieleApps\obj\Debug\TomBoelen_ProjectMobieleApps.csprojResolveAssemblyReference.cache

@@ -16,6 +16,7 @@ using System.Windows.Threading;
 using Microsoft.Phone.Maps.Controls;
 using Microsoft.Phone.Logging;
 using System.Windows.Media;
+using System.IO.IsolatedStorage;
 
 namespace TomBoelen_ProjectMobieleApps
 {
@@ -51,7 +52,25 @@ namespace TomBoelen_ProjectMobieleApps
 
         private void PhoneApplicationPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            this._ViewModel.LoadData();
+            //this._ViewModel.LoadData();
+            this._ViewModel.Items.Add(new Placemark()
+            {
+                Name = "Location 1",
+                Description = "Description 1",
+                GeoCoordinate = new GeoCoordinate(47.6050338745117, -122.334243774414)
+            });
+            this._ViewModel.Items.Add(new Placemark()
+            {
+                Name = "Location 2",
+                Description = "Description 2",
+                GeoCoordinate = new GeoCoordinate(47.6045697927475, -122.329885661602)
+            });
+            this._ViewModel.Items.Add(new Placemark()
+            {
+                Name = "Location 3",
+                Description = "Description 3",
+                GeoCoordinate = new GeoCoordinate(47.605712890625, -122.330268859863)
+            });
             maps.SetView(new GeoCoordinate(47.6045697927475, -122.329885661602), 16);
             maps.Pitch = 55;
             MapExtensions.GetChildren(maps)
@@ -143,6 +162,11 @@ namespace TomBoelen_ProjectMobieleApps
                 WideContent2 = string.Format("{0:f0} calories", _kilometers * 65),
             });
 
+        }
+
+        private void ButtonAsk_Click(object sender, RoutedEventArgs e)
+        {
+          
         }
 
 
