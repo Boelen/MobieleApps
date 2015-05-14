@@ -63,11 +63,11 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-           <!--<Button Content="START" HorizontalAlignment="Left" Margin="92,195,0,0" VerticalAlignment="Top" Height="145" Width="288"/>-->
+            <!--<Button Content="START" HorizontalAlignment="Left" Margin="92,195,0,0" VerticalAlignment="Top" Height="145" Width="288"/>-->
             <phone:Pivot Margin="12,17, 0, 28" Title="{Binding Path=LocalizedResources.PageTitle, Source={StaticResource LocalizedStrings}}" RenderTransformOrigin="0.509,0.557">
 
                 <phone:PivotItem Header="all">
-                    
+
                 </phone:PivotItem>
 
                 <phone:PivotItem Header="home">
@@ -87,7 +87,7 @@
                 <phone:PivotItem Header="Score">
                     <StackPanel>
                         <Button  Content="Score" HorizontalAlignment="Center" Click="ButtonAsk_Click" x:Name="ButtonAsk" Grid.Row="3" Width="300" Height="75" />
-                        <TextBlock TextWrapping="Wrap" Text="TextBlock" Name="BlockScore"/>
+                        <TextBlock  x:Name="BlockScore" Height="400" />
                     </StackPanel>
 
                 </phone:PivotItem>
@@ -137,10 +137,24 @@
                                     <!--<TextBlock Text="Pace" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center"/>
                                     <TextBlock Text="00:00" Grid.Column="3" x:Name="paceLabel" HorizontalAlignment="Center" Grid.Row="1"/>-->
 
-                                    <Button Content="start" Grid.ColumnSpan="4" HorizontalAlignment="Center" Click="StartButton_Click" x:Name="StartButton" Grid.Row="3" Width="300" Height="75" />
+                                    <Button Content="start" Grid.ColumnSpan="2" HorizontalAlignment="Center" Click="StartButton_Click" x:Name="StartButton" Grid.Row="3" Width="150" Height="75" />
+                                    <Button Content="Save" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" Click="SaveButton_Click" x:Name="SaveButton" Grid.Row="3" Width="150" Height="75" />
 
                                 </Grid>
                             </Grid>
+                        </Grid>
+                        <Grid Background="#99000000" HorizontalAlignment="Left" Height="100" Margin="212,17,0,0" VerticalAlignment="Top" Width="175">
+                           
+                            <Grid.RowDefinitions>
+
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="50"/>
+
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text=""  x:Name="LblLatitude" Grid.Row="0"/>
+                            <TextBlock Text="" x:Name="lblLongitude" Grid.Row="1"/>
+                        
                         </Grid>
 
 
@@ -151,7 +165,7 @@
                 </phone:PivotItem>
 
             </phone:Pivot>
-            
+
         </Grid>
 
         <!--Uncomment to see an alignment grid to help ensure your controls are

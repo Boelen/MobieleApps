@@ -19,23 +19,16 @@ namespace TomBoelen_ProjectMobieleApps
     public partial class AddPushpin : PhoneApplicationPage
     {
 
-        private Geolocator locator = null;
+        private Geolocator locator;
         private readonly PlaceMarkViewModel _ViewModel = new PlaceMarkViewModel();
+
         public AddPushpin()
         {
             InitializeComponent();
             BuildLocalizedApplicationBar();
-            
-
-            if (locator == null)
-            {
-                
-                locator = new Geolocator();
-                locator.DesiredAccuracy = PositionAccuracy.High;
-            }
-
-            ZoekCoord();
-
+            locator = new Geolocator();
+            locator.DesiredAccuracy = PositionAccuracy.High;
+            //ZoekCoord();
 
         }
 
@@ -63,23 +56,30 @@ namespace TomBoelen_ProjectMobieleApps
 
        private void PhoneApplicationPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            
+           
         }
 
          private void AddPushpin_Click(object sender, RoutedEventArgs e)
        {
+
            _ViewModel.Items.Add(new Placemark()
                 {
-                    Name = txtPushpin.Text,
+                    Name = Convert.ToString(txtPushpin.Text),
                     Description = txtLatitude.Text,
                     GeoCoordinate = new GeoCoordinate(Convert.ToDouble(txtLatitude.Text), Convert.ToDouble(txtLongitude.Text))
                    
                 });
+           _ViewModel.save();
        }
+
 
         async private void ZoekCoord()
         {
-            AddPushpinButton.IsEnabled = false;
+
+  
+            locator = new Geolocator();
+            locator.DesiredAccuracy = PositionAccuracy.High;
+
 
             //try
             //{

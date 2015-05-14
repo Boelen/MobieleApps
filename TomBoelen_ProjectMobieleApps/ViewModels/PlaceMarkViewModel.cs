@@ -63,31 +63,12 @@ namespace TomBoelen_ProjectMobieleApps.ViewModels
             StreamWriter writer = new StreamWriter(stream);
 
             XmlSerializer ser = new XmlSerializer(typeof(ObservableCollection<Placemark>));
-            ser.Serialize(writer,this);
+            ser.Serialize(writer,Items);
             writer.Close();
             iso.Dispose();
 
         }
 
-
-                //this.Items.Add(new Placemark()
-                //{
-                //    Name = "Location 1",
-                //    Description = "Description 1",
-                //    GeoCoordinate = new GeoCoordinate(47.6050338745117, -122.334243774414)
-                //});
-                //this.Items.Add(new Placemark()
-                //{
-                //    Name = "Location 2",
-                //    Description = "Description 2",
-                //    GeoCoordinate = new GeoCoordinate(47.6045697927475, -122.329885661602)
-                //});
-                //this.Items.Add(new Placemark()
-                //{
-                //    Name = "Location 3",
-                //    Description = "Description 3",
-                //    GeoCoordinate = new GeoCoordinate(47.605712890625, -122.330268859863)
-                //});
             }
            
        

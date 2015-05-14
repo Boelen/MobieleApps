@@ -17,6 +17,8 @@ using Microsoft.Phone.Maps.Controls;
 using Microsoft.Phone.Logging;
 using System.Windows.Media;
 using System.IO.IsolatedStorage;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace TomBoelen_ProjectMobieleApps
 {
@@ -28,6 +30,7 @@ namespace TomBoelen_ProjectMobieleApps
         private DispatcherTimer _Timer = new DispatcherTimer();
         private long _startTime;
         private double _kilometers;
+        private List<string> list2;
 
         // Constructor
        
@@ -52,26 +55,29 @@ namespace TomBoelen_ProjectMobieleApps
 
         private void PhoneApplicationPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            //this._ViewModel.LoadData();
-            this._ViewModel.Items.Add(new Placemark()
-            {
-                Name = "Location 1",
-                Description = "Description 1",
-                GeoCoordinate = new GeoCoordinate(47.6050338745117, -122.334243774414)
-            });
-            this._ViewModel.Items.Add(new Placemark()
-            {
-                Name = "Location 2",
-                Description = "Description 2",
-                GeoCoordinate = new GeoCoordinate(47.6045697927475, -122.329885661602)
-            });
-            this._ViewModel.Items.Add(new Placemark()
-            {
-                Name = "Location 3",
-                Description = "Description 3",
-                GeoCoordinate = new GeoCoordinate(47.605712890625, -122.330268859863)
-            });
+            this._ViewModel.LoadData();
+            //this._ViewModel.Items.Add(new Placemark()
+            //{
+            //    Name = "Location 1",
+            //    Description = "Description 1",
+            //    GeoCoordinate = new GeoCoordinate(47.6050338745117, -122.334243774414)
+            //});
+            //this._ViewModel.Items.Add(new Placemark()
+            //{
+            //    Name = "Location 2",
+            //    Description = "Description 2",
+            //    GeoCoordinate = new GeoCoordinate(47.6045697927475, -122.329885661602)
+            //});
+            //this._ViewModel.Items.Add(new Placemark()
+            //{
+            //    Name = "Location 3",
+            //    Description = "Description 3",
+            //    GeoCoordinate = new GeoCoordinate(47.605712890625, -122.330268859863)
+            //});
+
+
             maps.SetView(new GeoCoordinate(47.6045697927475, -122.329885661602), 16);
+
             maps.Pitch = 55;
             MapExtensions.GetChildren(maps)
             .OfType<MapItemsControl>().First()
@@ -148,6 +154,8 @@ namespace TomBoelen_ProjectMobieleApps
 
                 distanceLabel.Text = string.Format("{0:f2} km", _kilometers);
                 caloriesLabel.Text = String.Format("{0:f0}", _kilometers * 65);
+                LblLatitude.Text = Convert.ToString(e.Position.Location.Latitude);
+                lblLongitude.Text = Convert.ToString(e.Position.Location.Longitude);
             }
 
             maps.Center = coord;
@@ -166,7 +174,48 @@ namespace TomBoelen_ProjectMobieleApps
 
         private void ButtonAsk_Click(object sender, RoutedEventArgs e)
         {
-          
+            IsolatedStorageFile iso = IsolatedStorageFile.GetUserStoreForApplication();
+
+            if (iso.FileExists("XMP"))
+            {
+                IsolatedStorageFileStream stream = iso.OpenFile("XMP", FileMode.Open);
+                StreamReader reader = new StreamReader(stream);
+
+                XmlSerializer ser = new XmlSerializer(typeof(List<string>));
+                list2 = ser.Deserialize(reader) as List<string>;
+
+                reader.Close();
+            }
+            else
+            {
+                list2 = new List<string>();
+            }
+
+            iso.Dispose();
+
+
+            foreach(string score in list2 )
+            {
+
+                BlockScore.Text = score;
+            }
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            list2 = new List<string>();
+            list2.Add(Convert.ToString(distanceLabel.Text) + "=" + Convert.ToString(timeLabel.Text));
+
+            IsolatedStorageFile iso = IsolatedStorageFile.GetUserStoreForApplication();
+
+            IsolatedStorageFileStream stream = iso.CreateFile("XMP");
+            StreamWriter writer = new StreamWriter(stream);
+
+            XmlSerializer ser = new XmlSerializer(typeof(List<string>));
+            ser.Serialize(writer, list2);
+            writer.Close();
+            iso.Dispose();
+
         }
 
 
