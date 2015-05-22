@@ -27,8 +27,8 @@ namespace TomBoelen_ProjectMobieleApps
             InitializeComponent();
             BuildLocalizedApplicationBar();
             locator = new Geolocator();
-            locator.DesiredAccuracy = PositionAccuracy.High;
-            //ZoekCoord();
+            //locator.DesiredAccuracy = PositionAccuracy.High;
+        
 
         }
 
@@ -61,24 +61,31 @@ namespace TomBoelen_ProjectMobieleApps
 
          private void AddPushpin_Click(object sender, RoutedEventArgs e)
        {
-
-           _ViewModel.Items.Add(new Placemark()
-                {
-                    Name = Convert.ToString(txtPushpin.Text),
-                    Description = txtLatitude.Text,
-                    GeoCoordinate = new GeoCoordinate(Convert.ToDouble(txtLatitude.Text), Convert.ToDouble(txtLongitude.Text))
+           ZoekCoord();
+           //_ViewModel.Items.Add(new Placemark()
+           //     {
+           //         Name = Convert.ToString(txtPushpin.Text),
+           //         Description = txtLatitude.Text,
+           //         GeoCoordinate = new GeoCoordinate(Convert.ToDouble(txtLatitude.Text), Convert.ToDouble(txtLongitude.Text))
                    
-                });
-           _ViewModel.save();
+           //     });
+           //_ViewModel.save();
        }
+
+         protected override void OnNavigatedTo(NavigationEventArgs e)
+         {
+             ZoekCoord();
+
+             base.OnNavigatedTo(e);
+         }
 
 
         async private void ZoekCoord()
         {
 
   
-            locator = new Geolocator();
-            locator.DesiredAccuracy = PositionAccuracy.High;
+           // locator = new Geolocator();
+           // locator.DesiredAccuracy = PositionAccuracy.High;
 
 
             //try

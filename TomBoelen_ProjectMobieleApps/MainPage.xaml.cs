@@ -197,9 +197,7 @@ namespace TomBoelen_ProjectMobieleApps
 
             foreach(string score in list2 )
             {
-                test = test + "&#13;" + score;
-
-                BlockScore.Text =  test;
+                BlockScore.Text += score + "\r\n";
             }
         }
 
