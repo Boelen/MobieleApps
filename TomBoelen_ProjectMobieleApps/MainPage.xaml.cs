@@ -31,6 +31,7 @@ namespace TomBoelen_ProjectMobieleApps
         private long _startTime;
         private double _kilometers;
         private List<string> list2;
+        private string test;
 
         // Constructor
        
@@ -196,8 +197,9 @@ namespace TomBoelen_ProjectMobieleApps
 
             foreach(string score in list2 )
             {
+                test = test + "&#13;" + score;
 
-                BlockScore.Text = score;
+                BlockScore.Text =  test;
             }
         }
 
