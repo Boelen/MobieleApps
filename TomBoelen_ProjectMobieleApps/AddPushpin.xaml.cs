@@ -61,16 +61,20 @@ namespace TomBoelen_ProjectMobieleApps
 
          private void AddPushpin_Click(object sender, RoutedEventArgs e)
        {
-           ZoekCoord();
-           //_ViewModel.Items.Add(new Placemark()
-           //     {
-           //         Name = Convert.ToString(txtPushpin.Text),
-           //         Description = txtLatitude.Text,
-           //         GeoCoordinate = new GeoCoordinate(Convert.ToDouble(txtLatitude.Text), Convert.ToDouble(txtLongitude.Text))
-                   
-           //     });
-           //_ViewModel.save();
+           _ViewModel.Items.Add(new Placemark()
+                {
+                    Name = Convert.ToString(txtPushpin.Text),
+                    Description = txtLatitude.Text,
+                    GeoCoordinate = new GeoCoordinate(Convert.ToDouble(txtLatitude.Text), Convert.ToDouble(txtLongitude.Text))
+
+                });
+           _ViewModel.save();
        }
+
+        private void AddCoördinaten_Click(object sender, RoutedEventArgs e)
+         {
+             ZoekCoord();
+         }
 
          protected override void OnNavigatedTo(NavigationEventArgs e)
          {
@@ -103,6 +107,16 @@ namespace TomBoelen_ProjectMobieleApps
             AddPushpinButton.IsEnabled = true;
 
           
+        }
+
+        private void AddCoördinaten_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddCoördinaten_Click_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

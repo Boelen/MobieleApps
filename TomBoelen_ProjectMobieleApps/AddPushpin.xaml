@@ -53,7 +53,8 @@
             <TextBlock Grid.Column="0" Text="Latitude" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="28"/>
             <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Name="txtLatitude"  />
 
-            <Button Grid.Row="4" Grid.ColumnSpan="2" Click="AddPushpin_Click" x:Name="AddPushpinButton" > Voeg Pushpin Toe </Button>
+            <Button Grid.Row="4" Grid.ColumnSpan="1" Click="AddPushpin_Click" x:Name="AddPushpinButton" > Voeg Pushpin Toe </Button>
+            <Button Grid.Row="4" Grid.ColumnSpan="1" Grid.Column="1" x:Name="AddCoördinaten"  Click="AddCoördinaten_Click">Neem mijn coörd.</Button>
 
 
 
