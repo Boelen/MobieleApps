@@ -16,13 +16,13 @@ using TomBoelen_ProjectMobieleApps.ViewModels;
 
 namespace TomBoelen_ProjectMobieleApps
 {
-    public partial class AddPushpin : PhoneApplicationPage
+    public partial class Info : PhoneApplicationPage
     {
 
         private Geolocator locator;
         private readonly PlaceMarkViewModel _ViewModel = new PlaceMarkViewModel();
 
-        public AddPushpin()
+        public Info()
         {
             InitializeComponent();
             BuildLocalizedApplicationBar();

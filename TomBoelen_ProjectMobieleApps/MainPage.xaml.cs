@@ -58,7 +58,7 @@ namespace TomBoelen_ProjectMobieleApps
             //locator = new Geolocator();
 
             //Sample code to localize the ApplicationBar
-            BuildLocalizedApplicationBar();
+            //BuildLocalizedApplicationBar();
         }
 
         private void PhoneApplicationPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
@@ -95,7 +95,7 @@ namespace TomBoelen_ProjectMobieleApps
             {
                 _startTime = thisApp._startTime;
                 _kilometers = thisApp._kilometers;
-                StartButton_Click(null,null);
+                //StartButton_Click(null,null);
  
             }
 
@@ -118,23 +118,23 @@ namespace TomBoelen_ProjectMobieleApps
         private void BuildLocalizedApplicationBar()
         {
             // Set the page's ApplicationBar to a new instance of ApplicationBar.
-            ApplicationBar = new ApplicationBar();
+            //ApplicationBar = new ApplicationBar();
 
             // Create a new button and set the text value to the localized string from AppResources.
-            ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/add.png", UriKind.Relative));
-            appBarButton.Text = AppResources.AppBarButtonText;
-            ApplicationBar.Buttons.Add(appBarButton);
-            appBarButton.Click += appBarButton_Click;
+            //ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/add.png", UriKind.Relative));
+            //appBarButton.Text = AppResources.AppBarButtonText;
+            //ApplicationBar.Buttons.Add(appBarButton);
+            //appBarButton.Click += appBarButton_Click;
 
             // Create a new menu item with the localized string from AppResources.
             //ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
             //ApplicationBar.MenuItems.Add(appBarMenuItem);
         }
 
-        void appBarButton_Click(object sender, EventArgs e)
-        {
-          NavigationService.Navigate(new Uri("/AddPushpin.xaml", UriKind.RelativeOrAbsolute));
-        }
+        //void appBarButton_Click(object sender, EventArgs e)
+        //{
+        //  NavigationService.Navigate(new Uri("/AddPushpin.xaml", UriKind.RelativeOrAbsolute));
+        //}
 
         private void PhoneApplicationPage_Loaded_1(object sender, RoutedEventArgs e)
         {
@@ -157,10 +157,10 @@ namespace TomBoelen_ProjectMobieleApps
 
                 _watcher.Start();
                 _Timer.Start();
-                if (thisApp._startTime == 0)
-                {
+                //if (thisApp._startTime == 0)
+                //{
                     _startTime = System.Environment.TickCount;
-                }
+                //}
                 StartButton.Content = "Stop";
 
             }
