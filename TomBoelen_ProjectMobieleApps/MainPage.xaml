@@ -66,32 +66,6 @@
             <!--<Button Content="START" HorizontalAlignment="Left" Margin="92,195,0,0" VerticalAlignment="Top" Height="145" Width="288"/>-->
             <phone:Pivot Margin="12,17, 0, 28" Title="{Binding Path=LocalizedResources.PageTitle, Source={StaticResource LocalizedStrings}}" RenderTransformOrigin="0.509,0.557">
 
-                <phone:PivotItem Header="all">
-
-                </phone:PivotItem>
-
-                <phone:PivotItem Header="home">
-
-                    <StackPanel>
-                        <TextBlock Text="Red" FontSize="30"></TextBlock>
-                        <TextBlock Text="Yellow" FontSize="30"></TextBlock>
-                        <TextBlock Text="Blue" FontSize="30"></TextBlock>
-                        <TextBlock Text="Green" FontSize="30"></TextBlock>
-                        <TextBlock Text="White" FontSize="30"></TextBlock>
-                    </StackPanel>
-
-
-
-                </phone:PivotItem>
-
-                <phone:PivotItem Header="Score">
-                    <StackPanel>
-                        <Button  Content="Score" HorizontalAlignment="Center" Click="ButtonAsk_Click" x:Name="ButtonAsk" Grid.Row="3" Width="300" Height="75" />
-                        <TextBlock x:Name="BlockScore" Height="400"/>
-                    </StackPanel>
-
-                </phone:PivotItem>
-
                 <phone:PivotItem Header="MAP">
                     <Grid>
                         <maps:Map x:Name="maps" RenderTransformOrigin="0.51,0.94" PedestrianFeaturesEnabled="True" LandmarksEnabled="True">
@@ -164,7 +138,55 @@
 
                 </phone:PivotItem>
 
+                <phone:PivotItem Header="Score">
+                    <StackPanel>
+                        <Button  Content="Score" HorizontalAlignment="Center" Click="ButtonAsk_Click" x:Name="ButtonAsk" Grid.Row="3" Width="300" Height="75" />
+                        <TextBlock x:Name="BlockScore" Height="400"/>
+                    </StackPanel>
+                </phone:PivotItem>
+
+            
+            
+             <phone:PivotItem Header="Add Pushpin">
+
+                    <Grid x:Name="Pushpinpanel" Grid.Row="1" Margin="12,0,12,0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+
+                            <RowDefinition Height="100"/>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Text="Name Pushpin" HorizontalAlignment="Center" FontSize="36" VerticalAlignment="Center"/>
+                        <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Height="80" Name="txtPushpin" />
+
+                        <TextBlock Grid.Column="0" Text="Longitude" Grid.Row="2" VerticalAlignment="Center"  HorizontalAlignment="Center" FontSize="28"/>
+                        <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Name="txtLongitude"/>
+                        <TextBlock Grid.Column="0" Text="Latitude" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="28"/>
+                        <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Name="txtLatitude"  />
+
+                        <Button Grid.Row="4" Grid.ColumnSpan="1" Click="AddPushpin_Click" x:Name="AddPushpinButton" >Voeg Pushpin Toe</Button>
+                        <Button Grid.Row="4" Grid.ColumnSpan="1" Grid.Column="1" x:Name="AddCoördinaten"  Click="AddCoördinaten_Click">Neem mijn coörd.</Button>
+
+
+
+                    </Grid>
+
+
+
+                </phone:PivotItem>
             </phone:Pivot>
+
 
         </Grid>
 

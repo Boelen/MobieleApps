@@ -13,11 +13,7 @@
       <Capability Name="ID_CAP_LOCATION" />
     </Capabilities>
     <Tasks>
-      <DefaultTask Name="_default" NavigationPage="MainPage.xaml">
-        <BackgroundExecution>
-          <ExecutionType Name="LocationTracking" />
-        </BackgroundExecution>
-      </DefaultTask>
+      <DefaultTask Name="_default" NavigationPage="MainPage.xaml"></DefaultTask>
     </Tasks>
     <Tokens>
       <PrimaryToken TokenID="TomBoelen_ProjectMobieleAppsToken" TaskName="_default">

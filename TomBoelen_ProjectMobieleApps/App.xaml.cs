@@ -7,11 +7,16 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using TomBoelen_ProjectMobieleApps.Resources;
+using System.IO.IsolatedStorage;
+using System.Collections.Generic;
 
 namespace TomBoelen_ProjectMobieleApps
 {
     public partial class App : Application
     {
+        public long _startTime { get; set; }
+        public double _kilometers { get; set; }
+
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
         /// </summary>
@@ -61,24 +66,68 @@ namespace TomBoelen_ProjectMobieleApps
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            IsolatedStorageSettings isolatedStore = IsolatedStorageSettings.ApplicationSettings;
+            isolatedStore.Remove("starttime");
+            isolatedStore.Remove("kilometers");
+
+            IDictionary<string, object> stateStore = PhoneApplicationService.Current.State;
+            stateStore.Remove("starttime");
+            stateStore.Remove("kilometers");
         }
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
+            if (!e.IsApplicationInstancePreserved)
+            {
+                //Tombstoned
+                //Load from state object
+                IDictionary<string, object> stateStore = PhoneApplicationService.Current.State;
+
+                if (stateStore.ContainsKey("starttime"))
+                {
+                    _startTime = (long)stateStore["starttime"];
+                }
+
+                if (stateStore.ContainsKey("kilometers"))
+                {
+                    _kilometers = (double)stateStore["kilometers"];
+                }
+            }
         }
 
         // Code to execute when the application is deactivated (sent to background)
         // This code will not execute when the application is closing
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
+            IDictionary<string, object> stateStore = PhoneApplicationService.Current.State;
+            stateStore.Remove("starttime");
+            stateStore.Remove("kilometers");
+            stateStore.Add("starttime", _startTime);
+            stateStore.Add("kilometers", _kilometers);
+
+
+            IsolatedStorageSettings isolatedStore = IsolatedStorageSettings.ApplicationSettings;
+            isolatedStore.Remove("starttime");
+            isolatedStore.Remove("kilometers");
+            isolatedStore.Add("starttime", _startTime);
+            isolatedStore.Add("kilometers", _kilometers);
+            isolatedStore.Save();
         }
 
         // Code to execute when the application is closing (eg, user hit Back)
         // This code will not execute when the application is deactivated
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
+            IsolatedStorageSettings isolatedStore = IsolatedStorageSettings.ApplicationSettings;
+            isolatedStore.Remove("starttime");
+            isolatedStore.Remove("kilometers");
+
+            IDictionary<string, object> stateStore = PhoneApplicationService.Current.State;
+            stateStore.Remove("starttime");
+            stateStore.Remove("kilometers");
+
         }
 
         // Code to execute if a navigation fails

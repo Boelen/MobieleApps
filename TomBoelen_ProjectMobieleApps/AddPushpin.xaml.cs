@@ -56,19 +56,34 @@ namespace TomBoelen_ProjectMobieleApps
 
        private void PhoneApplicationPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-           
         }
 
          private void AddPushpin_Click(object sender, RoutedEventArgs e)
        {
-           _ViewModel.Items.Add(new Placemark()
-                {
-                    Name = Convert.ToString(txtPushpin.Text),
-                    Description = txtLatitude.Text,
-                    GeoCoordinate = new GeoCoordinate(Convert.ToDouble(txtLatitude.Text), Convert.ToDouble(txtLongitude.Text))
+           if (txtLatitude.Text == "" || txtLongitude.Text == "")
+           {
+               MessageBox.Show("Vul eerst de longitutde & latitude in");
+           }
+           else
+           {
 
-                });
-           _ViewModel.save();
+               try
+               {
+
+                   _ViewModel.Items.Add(new Placemark()
+                        {
+                            Name = Convert.ToString(txtPushpin.Text),
+                            Description = txtLatitude.Text,
+                            GeoCoordinate = new GeoCoordinate(Convert.ToDouble(txtLatitude.Text), Convert.ToDouble(txtLongitude.Text))
+
+                        });
+                   _ViewModel.save();
+               }
+               catch(FormatException)
+               {
+                   MessageBox.Show("Je format van je coördinaten is niet goed!");
+               }
+           }
        }
 
         private void AddCoördinaten_Click(object sender, RoutedEventArgs e)
@@ -76,47 +91,18 @@ namespace TomBoelen_ProjectMobieleApps
              ZoekCoord();
          }
 
-         protected override void OnNavigatedTo(NavigationEventArgs e)
-         {
-             ZoekCoord();
-
-             base.OnNavigatedTo(e);
-         }
 
 
         async private void ZoekCoord()
         {
 
-  
-           // locator = new Geolocator();
-           // locator.DesiredAccuracy = PositionAccuracy.High;
-
-
-            //try
-            //{
 
             Geoposition position = await locator.GetGeopositionAsync();
                 txtLatitude.Text = position.Coordinate.Latitude.ToString();
                 txtLongitude.Text = position.Coordinate.Longitude.ToString();
-            //}
-            //catch
-            //{
-            //    MessageBox.Show("Je locatie moet bepaalt worden");
-            //}
-
-            AddPushpinButton.IsEnabled = true;
-
-          
+         
         }
 
-        private void AddCoördinaten_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
-
-        private void AddCoördinaten_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

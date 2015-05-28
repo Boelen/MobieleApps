@@ -19,6 +19,7 @@ using System.Windows.Media;
 using System.IO.IsolatedStorage;
 using System.Xml.Serialization;
 using System.IO;
+using System.Collections;
 
 namespace TomBoelen_ProjectMobieleApps
 {
@@ -31,7 +32,10 @@ namespace TomBoelen_ProjectMobieleApps
         private long _startTime;
         private double _kilometers;
         private List<string> list2;
-        private string test;
+        //private List<Geocoordinate> coordinaten;
+        private GeoCoordinate coord;
+        //private Geolocator locator;
+        //private readonly PlaceMarkViewModel _ViewModel = new PlaceMarkViewModel();
 
         // Constructor
        
@@ -50,6 +54,9 @@ namespace TomBoelen_ProjectMobieleApps
             maps.MapElements.Add(_line);
             _watcher.PositionChanged += _watcher_PositionChanged;
 
+
+            //locator = new Geolocator();
+
             //Sample code to localize the ApplicationBar
             BuildLocalizedApplicationBar();
         }
@@ -57,34 +64,53 @@ namespace TomBoelen_ProjectMobieleApps
         private void PhoneApplicationPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             this._ViewModel.LoadData();
-            //this._ViewModel.Items.Add(new Placemark()
-            //{
-            //    Name = "Location 1",
-            //    Description = "Description 1",
-            //    GeoCoordinate = new GeoCoordinate(47.6050338745117, -122.334243774414)
-            //});
-            //this._ViewModel.Items.Add(new Placemark()
-            //{
-            //    Name = "Location 2",
-            //    Description = "Description 2",
-            //    GeoCoordinate = new GeoCoordinate(47.6045697927475, -122.329885661602)
-            //});
-            //this._ViewModel.Items.Add(new Placemark()
-            //{
-            //    Name = "Location 3",
-            //    Description = "Description 3",
-            //    GeoCoordinate = new GeoCoordinate(47.605712890625, -122.330268859863)
-            //});
 
+            //MapItemsControl MIC = MapExtensions.GetChildren(maps).FirstOrDefault(x => x is MapItemsControl) as MapItemsControl;
+            //if (MIC != null && MIC.ItemsSource != null)
+            //{
+            //            (MIC.ItemsSource as IList).Clear(); // clear old collection
+            //             MIC.ItemsSource = null;
+            //}
 
             maps.SetView(new GeoCoordinate(47.6045697927475, -122.329885661602), 16);
 
             maps.Pitch = 55;
+
             MapExtensions.GetChildren(maps)
             .OfType<MapItemsControl>().First()
             .ItemsSource = this._ViewModel.Items;
         }
 
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            App thisApp = App.Current as App;
+          
+
+            if (thisApp._startTime == 0)
+            {
+
+            }
+            else
+            {
+                _startTime = thisApp._startTime;
+                _kilometers = thisApp._kilometers;
+                StartButton_Click(null,null);
+ 
+            }
+
+            base.OnNavigatedTo(e);
+            
+        }
+
+        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            App thisApp = App.Current as App;
+            thisApp._startTime = _startTime;
+            thisApp._kilometers = _kilometers;
+
+            base.OnNavigatedFrom(e);
+        }
         
 
 
@@ -122,14 +148,21 @@ namespace TomBoelen_ProjectMobieleApps
                 _watcher.Stop();
                 _Timer.Stop();
                 StartButton.Content = "start";
+
             
             }
             else
             {
+                App thisApp = App.Current as App;
+
                 _watcher.Start();
                 _Timer.Start();
-                _startTime = System.Environment.TickCount;
+                if (thisApp._startTime == 0)
+                {
+                    _startTime = System.Environment.TickCount;
+                }
                 StartButton.Content = "Stop";
+
             }
         }
 
@@ -141,7 +174,9 @@ namespace TomBoelen_ProjectMobieleApps
 
         void _watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
-            var coord = new GeoCoordinate(e.Position.Location.Latitude, e.Position.Location.Longitude);
+            coord = new GeoCoordinate(e.Position.Location.Latitude, e.Position.Location.Longitude);
+
+
             if(_line.Path.Count > 0)
             {
                 var previousPoint = _line.Path.Last();
@@ -175,6 +210,8 @@ namespace TomBoelen_ProjectMobieleApps
 
         private void ButtonAsk_Click(object sender, RoutedEventArgs e)
         {
+            BlockScore.Text = "";
+
             IsolatedStorageFile iso = IsolatedStorageFile.GetUserStoreForApplication();
 
             if (iso.FileExists("XMP"))
@@ -203,7 +240,7 @@ namespace TomBoelen_ProjectMobieleApps
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            list2 = new List<string>();
+            //list2 = new List<string>();
             list2.Add(Convert.ToString(distanceLabel.Text) + "=" + Convert.ToString(timeLabel.Text));
 
             IsolatedStorageFile iso = IsolatedStorageFile.GetUserStoreForApplication();
@@ -215,6 +252,60 @@ namespace TomBoelen_ProjectMobieleApps
             ser.Serialize(writer, list2);
             writer.Close();
             iso.Dispose();
+
+        }
+
+
+        // PUSPIN
+
+        private void AddPushpin_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtLatitude.Text == "" || txtLongitude.Text == "")
+            {
+                MessageBox.Show("Vul eerst de longitutde & latitude in");
+            }
+            else
+            {
+
+                try
+                {
+
+                    _ViewModel.Items.Add(new Placemark()
+                    {
+                        Name = Convert.ToString(txtPushpin.Text),
+                        Description = txtLatitude.Text,
+                        GeoCoordinate = new GeoCoordinate(Convert.ToDouble(txtLatitude.Text), Convert.ToDouble(txtLongitude.Text))
+
+                    });
+                    _ViewModel.save();
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Je format van je coördinaten is niet goed!");
+                }
+            }
+        }
+
+        private void AddCoördinaten_Click(object sender, RoutedEventArgs e)
+        {
+            ZoekCoord();
+        }
+
+
+
+        private void ZoekCoord()
+        {
+
+
+            //Geoposition position = await locator.GetGeopositionAsync();
+            if(coord ==null)
+            {
+                MessageBox.Show("Je laatste positie is niet beschikbaar. Start de Run-app en kijk als de app je locatie kan vinden.");
+            }
+            else{
+            txtLatitude.Text = coord.Latitude.ToString();
+            txtLongitude.Text = coord.Longitude.ToString();
+            }
 
         }
 
