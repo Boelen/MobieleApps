@@ -201,7 +201,7 @@ namespace TomBoelen_ProjectMobieleApps
 
             ShellTile.ActiveTiles.First().Update(new IconicTileData()
             {
-                Title = "WP8Runner",
+                Title = "Run2View",
                 WideContent1 = string.Format("{0:f2} km", _kilometers),
                 WideContent2 = string.Format("{0:f0} calories", _kilometers * 65),
             });
