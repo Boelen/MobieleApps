@@ -88,7 +88,7 @@ namespace TomBoelen_ProjectMobieleApps.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to RunTool.
+        ///   Looks up a localized string similar to Run2View.
         /// </summary>
         public static string PageTitle {
             get {

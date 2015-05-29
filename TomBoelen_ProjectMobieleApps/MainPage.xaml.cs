@@ -31,6 +31,7 @@ namespace TomBoelen_ProjectMobieleApps
         private DispatcherTimer _Timer = new DispatcherTimer();
         private long _startTime;
         private double _kilometers;
+        private double distance;
         private List<string> list2;
         //private List<Geocoordinate> coordinaten;
         private GeoCoordinate coord;
@@ -145,8 +146,8 @@ namespace TomBoelen_ProjectMobieleApps
                 _Timer.Stop();
                 StartButton.Content = "start";
                 _kilometers = 0;
-
-            
+                distance = 0;
+               
             }
             else
             {
@@ -165,6 +166,8 @@ namespace TomBoelen_ProjectMobieleApps
                     _line.StrokeColor = Colors.Red;
                     _line.StrokeThickness = 5;
                     maps.MapElements.Add(_line);
+
+                    
 
                 StartButton.Content = "Stop";
 
@@ -185,7 +188,7 @@ namespace TomBoelen_ProjectMobieleApps
             if(_line.Path.Count > 0)
             {
                 var previousPoint = _line.Path.Last();
-                var distance = coord.GetDistanceTo(previousPoint);
+                distance = coord.GetDistanceTo(previousPoint);
 
                 //var MiliPerKilometer = (1000.0 / distance) * (System.Environment.TickCount - _previousPositionChangeTick);
 
