@@ -136,10 +136,6 @@ namespace TomBoelen_ProjectMobieleApps
         //  NavigationService.Navigate(new Uri("/AddPushpin.xaml", UriKind.RelativeOrAbsolute));
         //}
 
-        private void PhoneApplicationPage_Loaded_1(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
@@ -148,6 +144,7 @@ namespace TomBoelen_ProjectMobieleApps
                 _watcher.Stop();
                 _Timer.Stop();
                 StartButton.Content = "start";
+                _kilometers = 0;
 
             
             }
@@ -161,6 +158,14 @@ namespace TomBoelen_ProjectMobieleApps
                 //{
                     _startTime = System.Environment.TickCount;
                 //}
+
+
+                    maps.MapElements.Remove(_line);
+                    _line = new MapPolyline();
+                    _line.StrokeColor = Colors.Red;
+                    _line.StrokeThickness = 5;
+                    maps.MapElements.Add(_line);
+
                 StartButton.Content = "Stop";
 
             }
